@@ -263,7 +263,7 @@
                             <th>Bus</th>
                             <th>Route</th>
                             <th>Seat</th>
-                            <th>Amount</th>
+                            <th>Cost(VNĐ)</th>
                             <th>Departure</th>
                             <th>Booked</th>
                             <th>Actions</th>
@@ -331,7 +331,7 @@
                             </td>
                             <td>
                                 <?php 
-                                    echo '$'.$booked_amount;
+                                    echo $booked_amount;
                                 ?>
                             </td>
                             <td>

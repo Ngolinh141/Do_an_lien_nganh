@@ -242,7 +242,7 @@
                                 <th>Bus</th>
                                 <th>Departure Date</th>
                                 <th>Departure Time</th>
-                                <th>Cost</th>
+                                <th>Cost(VNĐ)</th>
                                 <th>Actions</th>
                             </thead>
                             <?php
@@ -287,7 +287,7 @@
                                         </td>
                                         <td>
                                             <?php 
-                                                echo '$'.$route_step_cost;?>
+                                                echo $route_step_cost;?>
                                         </td>
                                         <td>
                                             <button class="button edit-button " data-link="<?php echo $_SERVER['REQUEST_URI']; ?>" data-id="<?php 
@@ -351,7 +351,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="stepCost" class="form-label">Cost</label>
+                                <label for="stepCost" class="form-label">Cost(VNĐ)</label>
                                 <input type="number" class="form-control" id="stepCost" name="stepCost" required>
                             </div>
                             <div class="mb-3">

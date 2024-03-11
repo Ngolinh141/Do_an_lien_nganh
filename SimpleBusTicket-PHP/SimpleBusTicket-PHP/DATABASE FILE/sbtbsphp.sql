@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2021 at 06:02 AM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Feb 06, 2024 at 07:33 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,6 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `alogin`
+--
+
+CREATE TABLE `alogin` (
+  `id` int(11) NOT NULL,
+  `email` tinytext NOT NULL,
+  `password` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `alogin`
+--
+
+INSERT INTO `alogin` (`id`, `email`, `password`) VALUES
+(1, 'admin@gmail.com', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bookings`
 --
 
@@ -34,8 +54,8 @@ CREATE TABLE `bookings` (
   `customer_route` varchar(200) NOT NULL,
   `booked_amount` int(100) NOT NULL,
   `booked_seat` varchar(100) NOT NULL,
-  `booking_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `booking_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bookings`
@@ -60,9 +80,9 @@ INSERT INTO `bookings` (`id`, `booking_id`, `customer_id`, `route_id`, `customer
 CREATE TABLE `buses` (
   `id` int(100) NOT NULL,
   `bus_no` varchar(255) NOT NULL,
-  `bus_assigned` tinyint(1) NOT NULL DEFAULT '0',
-  `bus_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `bus_assigned` tinyint(1) NOT NULL DEFAULT 0,
+  `bus_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `buses`
@@ -92,8 +112,8 @@ CREATE TABLE `customers` (
   `customer_id` varchar(255) NOT NULL,
   `customer_name` varchar(30) NOT NULL,
   `customer_phone` varchar(10) NOT NULL,
-  `customer_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `customer_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
@@ -111,6 +131,101 @@ INSERT INTO `customers` (`id`, `customer_id`, `customer_name`, `customer_phone`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employee`
+--
+
+CREATE TABLE `employee` (
+  `id` int(11) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` text NOT NULL,
+  `birthday` date NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `nid` int(20) NOT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `dept` varchar(100) NOT NULL,
+  `degree` varchar(100) NOT NULL,
+  `pic` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `firstName`, `lastName`, `email`, `password`, `birthday`, `gender`, `contact`, `nid`, `address`, `dept`, `degree`, `pic`) VALUES
+(2, 'John', 'Smith', 'john@gmail.com', '1234', '2020-09-01', 'Male', '0999999999', 1, 'New York', 'IT', 'Waterboy', 'images/default.jpg'),
+(6, 'test', 'test', 'test@gmail.com', '1234', '2020-09-06', 'Male', '09998383737', 4, 'test', 'test', 'test', 'images/d.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_leave`
+--
+
+CREATE TABLE `employee_leave` (
+  `id` int(11) DEFAULT NULL,
+  `token` int(11) NOT NULL,
+  `start` date DEFAULT NULL,
+  `end` date DEFAULT NULL,
+  `reason` char(100) DEFAULT NULL,
+  `status` char(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `employee_leave`
+--
+
+INSERT INTO `employee_leave` (`id`, `token`, `start`, `end`, `reason`, `status`) VALUES
+(2, 1, '2020-09-03', '2020-09-05', 'COVID-19', 'Approved'),
+(2, 3, '2020-09-10', '2020-09-12', 'May Lagnat', 'Approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
+--
+
+CREATE TABLE `project` (
+  `pid` int(11) NOT NULL,
+  `eid` int(11) DEFAULT NULL,
+  `pname` varchar(100) DEFAULT NULL,
+  `duedate` date DEFAULT NULL,
+  `subdate` date DEFAULT '0000-00-00',
+  `mark` int(11) NOT NULL,
+  `status` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`pid`, `eid`, `pname`, `duedate`, `subdate`, `mark`, `status`) VALUES
+(1, 2, 'Junkyard', '2020-09-26', '2020-09-04', 1, 'Submitted');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rank`
+--
+
+CREATE TABLE `rank` (
+  `eid` int(11) NOT NULL,
+  `points` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `rank`
+--
+
+INSERT INTO `rank` (`eid`, `points`) VALUES
+(2, 0),
+(6, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `routes`
 --
 
@@ -122,8 +237,8 @@ CREATE TABLE `routes` (
   `route_dep_date` date NOT NULL,
   `route_dep_time` time NOT NULL,
   `route_step_cost` int(100) NOT NULL,
-  `route_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `route_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `routes`
@@ -142,13 +257,34 @@ INSERT INTO `routes` (`id`, `route_id`, `bus_no`, `route_cities`, `route_dep_dat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `salary`
+--
+
+CREATE TABLE `salary` (
+  `id` int(11) NOT NULL,
+  `base` int(11) NOT NULL,
+  `bonus` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `salary`
+--
+
+INSERT INTO `salary` (`id`, `base`, `bonus`, `total`) VALUES
+(2, 500, 0, 500),
+(6, 1000, 0, 1000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `seats`
 --
 
 CREATE TABLE `seats` (
   `bus_no` varchar(155) NOT NULL,
   `seat_booked` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `seats`
@@ -178,8 +314,8 @@ CREATE TABLE `users` (
   `user_fullname` varchar(100) NOT NULL,
   `user_name` varchar(30) NOT NULL,
   `user_password` varchar(255) NOT NULL,
-  `user_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -192,6 +328,12 @@ INSERT INTO `users` (`user_id`, `user_fullname`, `user_name`, `user_password`, `
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `alogin`
+--
+ALTER TABLE `alogin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `bookings`
@@ -212,9 +354,42 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `employee_leave`
+--
+ALTER TABLE `employee_leave`
+  ADD PRIMARY KEY (`token`),
+  ADD KEY `employee_leave_ibfk_1` (`id`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`pid`),
+  ADD KEY `project_ibfk_1` (`eid`);
+
+--
+-- Indexes for table `rank`
+--
+ALTER TABLE `rank`
+  ADD PRIMARY KEY (`eid`);
+
+--
 -- Indexes for table `routes`
 --
 ALTER TABLE `routes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `salary`
+--
+ALTER TABLE `salary`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -234,30 +409,88 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `alogin`
+--
+ALTER TABLE `alogin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
 --
 -- AUTO_INCREMENT for table `buses`
 --
 ALTER TABLE `buses`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `employee_leave`
+--
+ALTER TABLE `employee_leave`
+  MODIFY `token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `routes`
 --
 ALTER TABLE `routes`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `employee_leave`
+--
+ALTER TABLE `employee_leave`
+  ADD CONSTRAINT `employee_leave_ibfk_1` FOREIGN KEY (`id`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `project`
+--
+ALTER TABLE `project`
+  ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rank`
+--
+ALTER TABLE `rank`
+  ADD CONSTRAINT `rank_ibfk_1` FOREIGN KEY (`eid`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `salary`
+--
+ALTER TABLE `salary`
+  ADD CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`id`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

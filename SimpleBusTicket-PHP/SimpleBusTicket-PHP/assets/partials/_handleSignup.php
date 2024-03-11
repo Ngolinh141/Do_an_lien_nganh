@@ -32,7 +32,7 @@
         }
 
         // Redirect Page
-        header("location: ../admin/signup.php?signup=$signup_sucess&user_exists=$user_exists");
+        header("location: ../signup.php?signup=$signup_sucess&user_exists=$user_exists");
     }
 
 ?>

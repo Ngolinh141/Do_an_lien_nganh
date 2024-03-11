@@ -438,7 +438,7 @@
             width: 50%;
             left: 50%;
             transform: translateX(-50%);
-            border: radius 0;;
+            border-radius:;
         }
 
         nav{

@@ -67,7 +67,7 @@
                                 <input id="confPassword" type="password" name="confPassword" placeholder="Confirm Password*" required>
                                 <span id="confPassErr" class="error"></span>
                             </div>
-                            <button id="signup-btn" type="submit" name="signup">PROCEED</button>
+                            <button id="signup-btn" type="submit" name="signup" >PROCEED</button>
                         </form>
                     </div>
                 </div>

@@ -13,3 +13,8 @@ Username: admin
 Password: Password@123
 
 
+**Login Admin Details**
+
+Username: admin@gmail.com
+Password: admin
+
