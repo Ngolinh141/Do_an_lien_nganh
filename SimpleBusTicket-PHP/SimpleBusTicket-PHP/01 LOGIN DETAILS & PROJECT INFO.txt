@@ -1,19 +1,14 @@
-**Log on to codeastro.com for more projects!***
+**Tai khoan dang nhap**
 
 **Database Name: sbtbsphp**
 
-**Developed by Ashwin Anil**
-
-**Recommended PHP Version 5.6 or Newer**
-
-
-**Login Details**
+**Login Bus**
 
 Username: admin
 Password: Password@123
 
 
-**Login Admin Details**
+**Login Admin **
 
 Username: admin@gmail.com
 Password: admin
