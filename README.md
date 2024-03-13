@@ -1,4 +1,4 @@
-### Do_an_lien_nganh
+### Đồ án liên ngành
 
 - **Đề tài: Xây dựng hệ thống quản lý hãng xe khách.**
   + Ngành xe khách đang đối mặt với nhiều thách thức trong việc quản lý dịch vụ do sử dụng phương pháp truyền thống. Việc áp dụng công nghệ vào quản lý là nhu cầu cấp thiết để nâng cao hiệu quả hoạt động và khả năng cạnh tranh.
